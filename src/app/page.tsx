@@ -4,6 +4,14 @@ import { useState, useEffect, useMemo } from 'react';
 import { quests, Quest } from '../data/quests';
 import QuestCard from '../components/QuestCard';
 import Link from 'next/link';
+import { signInWithGoogle } from "../services/authService";
+import { getLeaderboard } from "../services/leaderboardService";
+
+async function testLeaderboard() {
+  const data = await getLeaderboard();
+  console.log(data);
+}
+
 
 // Mock user location (Madison, WI - near Capitol Square)
 const USER_LOCATION = { lat: 43.0731, lng: -89.4012 };
