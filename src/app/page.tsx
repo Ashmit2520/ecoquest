@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import { quests, Quest } from '@/data/quests';
-import QuestCard from '@/components/QuestCard';
+import { quests, Quest } from '../data/quests';
+import QuestCard from '../components/QuestCard';
 import Link from 'next/link';
 
 // Mock user location (Madison, WI - near Capitol Square)

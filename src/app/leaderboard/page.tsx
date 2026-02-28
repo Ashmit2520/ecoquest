@@ -6,8 +6,8 @@ import {
   LeaderboardUser, 
   TimeRange, 
   LeaderboardType 
-} from '@/data/leaderboard';
-import { useAuth } from '@/context/AuthContext';
+} from '../../data/leaderboard';
+import { useAuth } from '../../context/AuthContext';
 
 export default function LeaderboardPage() {
   const { user, lumaCoins } = useAuth();

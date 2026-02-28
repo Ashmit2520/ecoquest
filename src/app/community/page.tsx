@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { directMessages, Post, Thread, Comment } from '@/data/community';
-import { useAuth } from '@/context/AuthContext';
+import { directMessages, Post, Thread, Comment } from '../../data/community';
+import { useAuth } from '../../context/AuthContext';
 
 // Single community channel
 const communityChannel: Thread = {

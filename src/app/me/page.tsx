@@ -1,11 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { badges, UserBadgeProgress, initialBadgeProgress, getBadgeById } from '@/data/badges';
-import { quests } from '@/data/quests';
-import { inventoryItems, InventoryItem, rarityColors, categoryLabels, getItemsByCategory, getItemsByRarity } from '@/data/inventory';
-import BadgeCard from '@/components/BadgeCard';
-import { useAuth } from '@/context/AuthContext';
+import { badges, UserBadgeProgress, initialBadgeProgress, getBadgeById } from '../../data/badges';
+import { quests } from '../../data/quests';
+import { inventoryItems, InventoryItem, rarityColors, categoryLabels, getItemsByCategory, getItemsByRarity } from '../../data/inventory';
+import BadgeCard from '../../components/BadgeCard';
+import { useAuth } from '../../context/AuthContext';
 
 type InventoryCategory = 'all' | 'skins' | 'badges' | 'boosters' | 'seasonal';
 
