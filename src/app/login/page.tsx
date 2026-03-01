@@ -31,6 +31,40 @@ export default function LoginPage() {
     }
   }, [isNewUser]);
 
+  const handleGoogleSignIn = async () => {
+      
+  try {
+      
+      setError(''); // Clear previous errors
+      
+      // 1. Start the visual sequence
+      setIsAnimating(true);
+      setFoxPosition('side');
+      
+      // 2. Wait for the fox animation (800ms)
+      await new Promise(resolve => setTimeout(resolve, 800));
+
+      // 3. Trigger the Google Auth service
+      const success = await signInWithGoogle();
+      
+      if (success) {
+        // 4. Manually push to home (the useEffect will also catch this)
+        setIsNewUser(!isNewUser); // human
+        router.push('/');
+      } else {
+        // 5. If user cancels or it fails, reset the UI
+        setError('Google sign-in was interrupted.');
+        setFoxPosition('center');
+        setIsAnimating(false);
+      }
+    } catch (error) {
+      setError('Google sign-in failed. Please try again.');
+      setFoxPosition('center');
+      setIsAnimating(false);
+      console.error('Google sign-in error:', error);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -183,7 +217,7 @@ export default function LoginPage() {
 
             <div>
               <button
-                onClick={signInWithGoogle}
+                onClick={handleGoogleSignIn}
                 className="px-4 py-2 bg-eco-green text-white rounded-lg font-semibold text-sm hover:bg-eco-green-dark transition-colors shadow-sm"
               >
                 Sign in with Google

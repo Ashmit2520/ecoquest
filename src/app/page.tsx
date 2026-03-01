@@ -57,11 +57,11 @@ export default function HomePage() {
   const [sortBy, setSortBy] = useState<SortOption>('nearest');
   const [difficultyFilters, setDifficultyFilters] = useState<Difficulty[]>([]);
 
-  <><button onClick={signInWithGoogle}>
-      Sign in with Google
-    </button><button onClick={testLeaderboard}>
-        Test Leaderboard
-      </button></>
+  // <><button onClick={signInWithGoogle}>
+  //     Sign in with Google
+  //   </button><button onClick={testLeaderboard}>
+  //       Test Leaderboard
+  //     </button></>
 
   useEffect(() => {
     const saved = localStorage.getItem('ecoquest_completed');
