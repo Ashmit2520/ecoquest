@@ -9,10 +9,15 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@google/genai": "^1.43.0",
     "@react-google-maps/api": "^2.20.8",
+    "dotenv": "^17.3.1",
     "firebase": "^12.10.0",
+    "firebase-admin": "^13.7.0",
     "framer-motion": "^12.34.3",
+    "genai": "^0.0.18",
     "next": "16.1.6",
+    "p-limit": "^7.3.0",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
