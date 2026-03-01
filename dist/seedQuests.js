@@ -1,16 +1,4 @@
 "use strict";
-/**
- * seedQuests.ts
- *
- * SETUP
- * 1) npm i firebase-admin @google/genai p-limit dotenv
- * 2) Set env:
- *    - GOOGLE_APPLICATION_CREDENTIALS=/absolute/path/to/serviceAccount.json
- *      OR run in an environment with Application Default Credentials.
- * 3) Run:
- *    - npx ts-node seedQuests.ts
- *      (or compile with tsc and run node)
- */
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -59,6 +47,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * seedQuests.ts
+ *
+ * SETUP
+ * 1) npm i firebase-admin @google/genai p-limit dotenv
+ * 2) Set env:
+ *    - GOOGLE_APPLICATION_CREDENTIALS=/absolute/path/to/serviceAccount.json
+ *      OR run in an environment with Application Default Credentials.
+ * 3) Run:
+ *    - npx ts-node seedQuests.ts
+ *      (or compile with tsc and run node)
+ */
+var dotenv_1 = require("dotenv");
+dotenv_1.default.config({ path: ".env.local" });
 require("dotenv/config");
 var p_limit_1 = require("p-limit");
 var firebase_admin_1 = require("firebase-admin");
@@ -77,7 +79,7 @@ if (!GEMINI_API_KEY) {
 }
 var ai = new genai_1.GoogleGenAI({ apiKey: GEMINI_API_KEY });
 // -------------------- CONFIG --------------------
-var MODEL = "gemini-2.0-flash";
+var MODEL = "gemini-2.5-flash";
 var QUESTS_PER_PLACE = 12;
 var MAX_CONCURRENCY_PLACES = 2; // number of places processed in parallel
 var MAX_CONCURRENCY_WRITES = 8; // number of parallel Firestore creates
@@ -88,9 +90,9 @@ var PROOF_TYPES = ["photo", "checkbox", "note", "gps_or_checkbox", "gps_or_photo
 // Places (expand this list)
 var PLACES = [
     { placeId: "bakke", placeName: "Bakke Recreation & Wellbeing Center", lat: 43.0769, lng: -89.4092 },
-    { placeId: "kronshage", placeName: "Kronshage Dorms", lat: 43.0798, lng: -89.4312 },
-    { placeId: "memorial_union", placeName: "Memorial Union", lat: 43.0763, lng: -89.4008 },
-    { placeId: "picnic_point", placeName: "Picnic Point", lat: 43.0916, lng: -89.4247 },
+    // { placeId: "kronshage", placeName: "Kronshage Dorms", lat: 43.0798, lng: -89.4312 },
+    // { placeId: "memorial_union", placeName: "Memorial Union", lat: 43.0763, lng: -89.4008 },
+    // { placeId: "picnic_point", placeName: "Picnic Point", lat: 43.0916, lng: -89.4247 },
 ];
 // Collection to write to
 var QUESTS_COLLECTION = "quests";
@@ -178,38 +180,68 @@ function isProofType(x) {
     return PROOF_TYPES.includes(x);
 }
 function basicValidateQuest(q, place) {
-    if (!q || typeof q !== "object")
+    var questLabel = (q === null || q === void 0 ? void 0 : q.title) ? "\"".concat(q.title, "\"") : "(no title)";
+    if (!q || typeof q !== "object") {
+        console.error("\u274C Invalid quest object: not an object", q);
         return false;
-    if (typeof q.title !== "string" || q.title.trim().length < 4)
+    }
+    if (typeof q.title !== "string" || q.title.trim().length < 4) {
+        console.error("\u274C Invalid title for quest ".concat(questLabel));
         return false;
-    if (typeof q.description !== "string" || q.description.trim().length < 10)
+    }
+    if (typeof q.description !== "string" || q.description.trim().length < 10) {
+        console.error("\u274C Invalid description for quest ".concat(questLabel));
         return false;
-    if (typeof q.category !== "string" || q.category.trim().length < 3)
+    }
+    if (typeof q.category !== "string" || q.category.trim().length < 3) {
+        console.error("\u274C Invalid category for quest ".concat(questLabel));
         return false;
-    if (!isRewardId(q.rewardId))
+    }
+    if (!isRewardId(q.rewardId)) {
+        console.error("\u274C Invalid rewardId for quest ".concat(questLabel, ":"), q.rewardId);
         return false;
-    if (typeof q.time !== "number")
+    }
+    if (typeof q.time !== "number") {
+        console.error("\u274C Time is not a number for quest ".concat(questLabel));
         return false;
-    if (q.time < 5 || q.time > 45)
+    }
+    if (q.time < 5 || q.time > 45) {
+        console.error("\u274C Time out of range (5\u201345) for quest ".concat(questLabel, ":"), q.time);
         return false;
-    if (typeof q.difficulty !== "number")
+    }
+    if (typeof q.difficulty !== "number") {
+        console.error("\u274C Difficulty is not a number for quest ".concat(questLabel));
         return false;
-    if (q.difficulty < 1 || q.difficulty > 4)
+    }
+    if (q.difficulty < 1 || q.difficulty > 4) {
+        console.error("\u274C Difficulty out of range (1\u20134) for quest ".concat(questLabel, ":"), q.difficulty);
         return false;
-    if (!q.proof || typeof q.proof !== "object")
+    }
+    if (!q.proof || typeof q.proof !== "object") {
+        console.error("\u274C Missing or invalid proof object for quest ".concat(questLabel));
         return false;
-    if (!isProofType(q.proof.type))
+    }
+    if (!isProofType(q.proof.type)) {
+        console.error("\u274C Invalid proof.type for quest ".concat(questLabel, ":"), q.proof.type);
         return false;
-    if (typeof q.proof.required !== "boolean")
+    }
+    if (typeof q.proof.required !== "boolean") {
+        console.error("\u274C proof.required is not boolean for quest ".concat(questLabel));
         return false;
-    if (!q.loc || typeof q.loc !== "object")
+    }
+    if (!q.loc || typeof q.loc !== "object") {
+        console.error("\u274C Missing or invalid loc object for quest ".concat(questLabel));
         return false;
-    if (typeof q.loc.latitude !== "number" || typeof q.loc.longitude !== "number")
+    }
+    if (typeof q.loc.latitude !== "number" || typeof q.loc.longitude !== "number") {
+        console.error("\u274C Invalid latitude/longitude for quest ".concat(questLabel));
         return false;
-    // Ensure within ~1.5km
+    }
     var km = distanceKm(place.lat, place.lng, q.loc.latitude, q.loc.longitude);
-    if (km > 1.6)
+    if (km > 1.6) {
+        console.error("\u274C Quest ".concat(questLabel, " is too far from place center (").concat(km.toFixed(2), "km)"));
         return false;
+    }
     return true;
 }
 function normalizeQuest(q, place) {
@@ -302,11 +334,11 @@ function createQuestIfNotExists(q) {
 // -------------------- Gemini generation --------------------
 function generateQuestsForPlace(place) {
     return __awaiter(this, void 0, void 0, function () {
-        var prompt, res, jsonText, data, cleaned, rawQuests, normalized, valid, seen, deduped, _i, valid_1, q, key;
+        var prompt, res, jsonText;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    prompt = "\nYou are generating sustainability quests for Madison, WI (UW\u2013Madison campus area).\nGenerate ".concat(QUESTS_PER_PLACE, " quests specifically near: ").concat(place.placeName, " (").concat(place.lat, ", ").concat(place.lng, ").\n\nRules:\n- Each quest must be realistic, safe, and legal.\n- Use categories like: Cleanup, Transit, Energy, Water, Education, Reuse, Community, Nature.\n- Vary difficulty 1-4 (easy..demon mapped as 1..4).\n- loc must be within ~1.5km of the provided coordinates.\n- description must include clear instructions AND explicitly mention the proof type (photo/checkbox/note/etc).\n- rewardId must be one of: ").concat(REWARD_IDS.join(", "), "\n- proof.type must be one of: ").concat(PROOF_TYPES.join(", "), "\n- Make titles unique within this place.\nReturn ONLY JSON matching the schema.\n").trim();
+                    prompt = "\nYou are generating sustainability quests for Madison, WI (UW\u2013Madison campus area).\nGenerate 1 quests specifically near: ".concat(place.placeName, " (").concat(place.lat, ", ").concat(place.lng, ").\n\nRules:\n- Each quest must be realistic, safe, and legal.\n- Use categories like: Cleanup, Transit, Energy, Water, Education, Reuse, Community, Nature.\n- Vary difficulty 1-4 (easy..demon mapped as 1..4).\n- loc must be within ~1.5km of the provided coordinates.\n- description must include clear instructions AND explicitly mention the proof type (photo/checkbox/note/etc).\n- rewardId must be one of: ").concat(REWARD_IDS.join(", "), "\n- proof.type must be one of: ").concat(PROOF_TYPES.join(", "), "\n- Make titles unique within this place.\nReturn ONLY JSON matching the schema.\n").trim();
                     return [4 /*yield*/, sleep(SLEEP_MS_BETWEEN_GEMINI_CALLS)];
                 case 1:
                     _a.sent();
@@ -321,37 +353,62 @@ function generateQuestsForPlace(place) {
                 case 2:
                     res = _a.sent();
                     jsonText = extractText(res).trim();
-                    if (!jsonText) {
-                        throw new Error("Gemini returned empty response for ".concat(place.placeName));
-                    }
-                    try {
-                        data = JSON.parse(jsonText);
-                    }
-                    catch (e) {
-                        cleaned = jsonText
-                            .replace(/^```json\s*/i, "")
-                            .replace(/^```\s*/i, "")
-                            .replace(/```$/i, "")
-                            .trim();
-                        data = JSON.parse(cleaned);
-                    }
-                    rawQuests = Array.isArray(data === null || data === void 0 ? void 0 : data.quests) ? data.quests : [];
-                    normalized = rawQuests.map(function (q) { return normalizeQuest(q, place); });
-                    valid = normalized.filter(function (q) { return basicValidateQuest(q, place); });
-                    seen = new Set();
-                    deduped = [];
-                    for (_i = 0, valid_1 = valid; _i < valid_1.length; _i++) {
-                        q = valid_1[_i];
-                        key = q.title.toLowerCase();
-                        if (!seen.has(key)) {
-                            seen.add(key);
-                            deduped.push(q);
-                        }
-                    }
-                    if (deduped.length === 0) {
-                        throw new Error("No valid quests generated for ".concat(place.placeName, ". Raw count=").concat(rawQuests.length));
-                    }
-                    return [2 /*return*/, deduped];
+                    // console.log("\n🔵 RAW GEMINI RESPONSE:\n", jsonText, "\n");
+                    // if (!jsonText) {
+                    //   throw new Error(`Gemini returned empty response for ${place.placeName}`);
+                    // }
+                    // let data: any;
+                    // try {
+                    //   data = JSON.parse(jsonText);
+                    // } catch (e) {
+                    //   // Sometimes models wrap JSON in code fences—strip if present
+                    //   const cleaned = jsonText
+                    //     .replace(/^```json\s*/i, "")
+                    //     .replace(/^```\s*/i, "")
+                    //     .replace(/```$/i, "")
+                    //     .trim();
+                    //   data = JSON.parse(cleaned);
+                    // }
+                    // const rawQuests = Array.isArray(data?.quests) ? data.quests : [];
+                    // const normalized = rawQuests.map((q: any) => normalizeQuest(q, place));
+                    // const valid = normalized.filter((q: any) => basicValidateQuest(q, place));
+                    // // De-dupe titles within a place (just in case)
+                    // const seen = new Set<string>();
+                    // const deduped: any[] = [];
+                    // for (const q of valid) {
+                    //   const key = q.title.toLowerCase();
+                    //   if (!seen.has(key)) {
+                    //     seen.add(key);
+                    //     deduped.push(q);
+                    //   }
+                    // }
+                    // if (deduped.length === 0) {
+                    //   throw new Error(`No valid quests generated for ${place.placeName}. Raw count=${rawQuests.length}`);
+                    // }
+                    return [2 /*return*/, jsonText];
+            }
+        });
+    });
+}
+function saveRawGeminiOutput(place, raw) {
+    return __awaiter(this, void 0, void 0, function () {
+        var docId;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    docId = "".concat(place.placeId, "_").concat(Date.now());
+                    return [4 /*yield*/, firestore.collection("quests").doc(docId).set({
+                            placeId: place.placeId,
+                            placeName: place.placeName,
+                            center: { latitude: place.lat, longitude: place.lng },
+                            model: MODEL,
+                            raw: raw, // <-- entire Gemini string
+                            createdAt: firebase_admin_1.default.firestore.FieldValue.serverTimestamp(),
+                        })];
+                case 1:
+                    _a.sent();
+                    console.log("\u2705 saved raw output: quests/".concat(docId));
+                    return [2 /*return*/];
             }
         });
     });
@@ -399,7 +456,7 @@ function main() {
                     limitPlaces = (0, p_limit_1.default)(MAX_CONCURRENCY_PLACES);
                     tasks = PLACES.map(function (place) {
                         return limitPlaces(function () { return __awaiter(_this, void 0, void 0, function () {
-                            var quests, stats;
+                            var quests;
                             return __generator(this, function (_a) {
                                 switch (_a.label) {
                                     case 0:
@@ -407,11 +464,11 @@ function main() {
                                         return [4 /*yield*/, generateQuestsForPlace(place)];
                                     case 1:
                                         quests = _a.sent();
-                                        console.log("[2/2] Writing ".concat(quests.length, " quests for: ").concat(place.placeName));
-                                        return [4 /*yield*/, writeQuests(quests)];
+                                        console.log("[2/2] Writing ".concat(quests, " quests for: ").concat(place.placeName));
+                                        console.log(quests);
+                                        return [4 /*yield*/, saveRawGeminiOutput(place, quests)];
                                     case 2:
-                                        stats = _a.sent();
-                                        console.log("Done: ".concat(place.placeName, " | created=").concat(stats.created, " skipped(existing)=").concat(stats.skipped, " total=").concat(stats.total));
+                                        _a.sent();
                                         return [2 /*return*/];
                                 }
                             });
