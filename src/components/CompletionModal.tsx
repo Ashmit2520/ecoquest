@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Quest } from '@/data/quests';
+import { Quest } from '../data/quests';
 
 interface CompletionModalProps {
   quest: Quest;
