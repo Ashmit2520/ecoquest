@@ -9,7 +9,7 @@ export default function DebugPage() {
 
   useEffect(() => {
     // Madison-ish coords (UW campus area)
-    getNearbyQuests(43.0766, -89.4041, 1)
+    getNearbyQuests(43.0766, -89.4041, 8)
       .then(setQuests)
       .catch((e) => setError(e?.message ?? String(e)));
   }, []);
