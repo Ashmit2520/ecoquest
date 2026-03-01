@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 
@@ -14,8 +15,8 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 bg-gradient-to-br from-eco-green to-eco-green-dark rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
-              <span className="text-white text-xl">🌍</span>
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center overflow-hidden group-hover:shadow-lg transition-shadow">
+              <Image src="/logo%20new.png" alt="EcoQuest Logo" width={40} height={40} className="object-cover" />
             </div>
             <span className="text-xl font-bold bg-gradient-to-r from-eco-green to-eco-green-dark bg-clip-text text-transparent">
               EcoQuest
@@ -27,7 +28,7 @@ export default function Navbar() {
             <div className="flex items-center gap-3">
               {/* Luma Coins */}
               <div className="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-full border border-amber-200 shadow-sm">
-                <span className="text-xl coin-bounce">🪙</span>
+                <Image src="/erasebg-transformed%20(2).png" alt="Luma Coin" width={24} height={24} className="coin-bounce" />
                 <span className="font-bold text-amber-700">{lumaCoins.toLocaleString()}</span>
               </div>
 

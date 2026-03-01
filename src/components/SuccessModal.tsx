@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect } from 'react';
-import { Badge } from '../data/badges';
+import Image from 'next/image';
+import { Badge } from '@/data/badges';
 
 interface SuccessModalProps {
   isOpen: boolean;
@@ -93,7 +94,7 @@ export default function SuccessModal({
             </div>
             {lumaCoinsEarned > 0 && (
               <div className="flex items-center gap-1 px-4 py-2 bg-amber-100 rounded-full animate-[coin-bounce_1s_ease-in-out_infinite]">
-                <span className="text-lg">🪙</span>
+                <Image src="/erasebg-transformed%20(2).png" alt="Luma Coin" width={24} height={24} />
                 <span className="font-bold text-amber-600">+{lumaCoinsEarned} Luma</span>
               </div>
             )}
