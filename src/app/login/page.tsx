@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '../../context/AuthContext';
+import Image from 'next/image';
+import { useAuth } from '@/context/AuthContext';
 
 export default function LoginPage() {
   const [isNewUser, setIsNewUser] = useState(true);
@@ -109,8 +110,8 @@ export default function LoginPage() {
       {/* Logo */}
       <div className="mb-8 text-center">
         <div className="flex items-center justify-center gap-3 mb-2">
-          <div className="w-16 h-16 bg-gradient-to-br from-eco-green to-eco-green-dark rounded-2xl flex items-center justify-center shadow-lg">
-            <span className="text-4xl">🌍</span>
+          <div className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg overflow-hidden">
+            <Image src="/logo%20new.png" alt="EcoQuest Logo" width={64} height={64} className="object-cover" />
           </div>
         </div>
         <h1 className="text-4xl font-bold bg-gradient-to-r from-eco-green to-emerald-600 bg-clip-text text-transparent">

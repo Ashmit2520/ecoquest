@@ -223,10 +223,10 @@ export default function HomePage() {
               <label className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2 block">Sort by</label>
               <div className="flex flex-wrap gap-2">
                 {[
-                  { value: 'nearest', label: '📍 Nearest' },
-                  { value: 'easiest', label: '🌱 Easiest' },
-                  { value: 'points', label: '⭐ Most Points' },
-                  { value: 'time', label: '⏱️ Shortest' },
+                  { value: 'nearest', label: 'Nearest' },
+                  { value: 'easiest', label: 'Easiest' },
+                  { value: 'points', label: 'Most Points' },
+                  { value: 'time', label: 'Shortest' },
                 ].map(option => (
                   <button
                     key={option.value}
