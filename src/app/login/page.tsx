@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
+import { signInWithGoogle } from '@/services/authService';
 
 export default function LoginPage() {
   const [isNewUser, setIsNewUser] = useState(true);
@@ -172,13 +173,22 @@ export default function LoginPage() {
             </button>
           </form>
 
-          <div className="mt-6 text-center">
+          <div className="mt-6 text-center space-y-3">
             <button
               onClick={() => setIsNewUser(!isNewUser)}
               className="text-eco-green hover:text-eco-green-dark font-medium transition-colors"
             >
               {isNewUser ? 'I already have an account' : "I'm new here"}
             </button>
+
+            <div>
+              <button
+                onClick={signInWithGoogle}
+                className="px-4 py-2 bg-eco-green text-white rounded-lg font-semibold text-sm hover:bg-eco-green-dark transition-colors shadow-sm"
+              >
+                Sign in with Google
+              </button>
+            </div>
           </div>
         </div>
       </div>
