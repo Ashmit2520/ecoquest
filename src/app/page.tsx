@@ -1,10 +1,26 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, Suspense } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls, Stage } from '@react-three/drei';
+import  Fox  from '../components/Fox'; 
 import { quests, Quest } from '../data/quests';
 import QuestCard from '../components/QuestCard';
 import Link from 'next/link';
+import Scene from '../components/Scene';
+import { motion } from 'framer-motion';
 
+export const FlippingImage = ({ src, alt, className }: { src: string; alt: string; className: string }) => (
+  <motion.img
+    src={src}
+    alt={alt}
+    className={className}
+    initial={{ rotateX: 0, scaleY: 0.5 , y: '-45%' }}
+    whileHover={{ rotateX: 180 }}
+    transition={{ duration: 0.8 }}
+    style={{ width: "auto", height: '1500px' }}
+  />
+);
 // Mock user location (Madison, WI - near Capitol Square)
 const USER_LOCATION = { lat: 43.0731, lng: -89.4012 };
 const MOCK_ACTIVE_MEMBERS = 247;
@@ -105,19 +121,20 @@ export default function HomePage() {
         {/* Map Panel - Left Side */}
         <div className="lg:col-span-3">
           <div className="sticky top-32">
+
             {/* Map Container */}
             <div className="relative bg-gradient-to-br from-green-100 via-blue-50 to-green-50 rounded-2xl border-2 border-green-200 overflow-hidden shadow-lg" style={{ height: '520px' }}>
               {/* Grid background */}
               <div className="absolute inset-0 opacity-30">
-                <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#22c55e" strokeWidth="0.5"/>
-                    </pattern>
-                  </defs>
-                  <rect width="100%" height="100%" fill="url(#grid)" />
-                </svg>
+                <FlippingImage src="/map.png" alt="Map background" className="w-full h-200 object-cover transform [transform:rotateX(45deg)]" />
+              
               </div>
+                
+              
+              {/* 3‑D background – sits under everything else */}
+              {/* <div className="absolute inset-0">
+                <Scene />
+              </div> */}
 
               {/* Quest markers */}
               <div className="absolute inset-0 p-6">
@@ -155,10 +172,24 @@ export default function HomePage() {
               </div>
 
               {/* User location marker */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30">
+              {/* <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30">
                 <div className="relative">
                   <div className="w-5 h-5 bg-blue-500 rounded-full border-3 border-white shadow-lg" />
                   <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-blue-500/20 rounded-full animate-ping" />
+                </div>
+              </div> */}
+              {/* Fox Mascot Overlay */}
+              <div className="absolute bottom-15 right-65 w-32 h-32 z-50 pointer-events-auto">
+                <Canvas camera={{ position: [0, 1, 3], fov: 40 }}>
+                  <Suspense fallback={null}>
+                    <Stage environment="city" intensity={0.5} castShadow={false}>
+                      <Fox scale={1.2} />
+                    </Stage>
+                  </Suspense>
+                  <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={2} />
+                </Canvas>
+                <div className="absolute -top-8 right-0 bg-white px-2 py-1 rounded-lg shadow-md border text-[10px] font-bold text-eco-green animate-bounce">
+                  LET'S QUEST!
                 </div>
               </div>
 
