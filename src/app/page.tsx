@@ -7,6 +7,8 @@ import Link from 'next/link';
 import { signInWithGoogle } from "../services/authService";
 import { getLeaderboard } from "../services/leaderboardService";
 
+
+
 async function testLeaderboard() {
   const data = await getLeaderboard();
   console.log(data);
@@ -54,6 +56,12 @@ export default function HomePage() {
   const [selectedQuestId, setSelectedQuestId] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState<SortOption>('nearest');
   const [difficultyFilters, setDifficultyFilters] = useState<Difficulty[]>([]);
+
+  <><button onClick={signInWithGoogle}>
+      Sign in with Google
+    </button><button onClick={testLeaderboard}>
+        Test Leaderboard
+      </button></>
 
   useEffect(() => {
     const saved = localStorage.getItem('ecoquest_completed');
@@ -107,21 +115,10 @@ export default function HomePage() {
     );
   };
 
-import { signInWithGoogle } from "../services/authService";
-import { getLeaderboard } from "../services/leaderboardService";
+
 
 async function testLeaderboard() {
   const data = await getLeaderboard();
   console.log(data);
 }
-
-
-export default function Home() {
-  return (
-    <><button onClick={signInWithGoogle}>
-      Sign in with Google
-    </button><button onClick={testLeaderboard}>
-        Test Leaderboard
-      </button></>
-  );
 }
