@@ -1,6 +1,6 @@
 # 🌍 EcoQuest
 
-> **Turn your daily actions into global impact.** Complete sustainability quests, earn points, and challenge your friends to make real change—one check-in at a time.
+> **Turn your daily actions into global impact.** Complete sustainability quests, earn points, and challenge your friends to make real change one check-in at a time.
 
 ---
 
@@ -8,7 +8,7 @@
 
 Climate change is real. But so is your power to make a difference. **EcoQuest gamifies sustainability**, transforming environmental action from a distant goal into an immediate, rewarding, and *competitive* challenge. 
 
-We believe that **people change the world when they're motivated, supported, and celebrated.** This is where EcoQuest comes in. Get your friends on board. Complete quests in your neighborhood. Prove it with a photo. Climb the leaderboard. And most importantly—**help build a world that actually has a future.**
+We believe that **people change the world when they're motivated, supported, and celebrated.** This is where EcoQuest comes in. Get your friends on board. Complete quests in your neighborhood. Prove it with a photo. Climb the leaderboard. And most importantly, **help build a world that actually has a future.**
 
 No guilt. No greenwashing. Just real action, real progress, and real competition.
 
@@ -16,17 +16,17 @@ No guilt. No greenwashing. Just real action, real progress, and real competition
 
 ## ✨ Features
 
-🗺️ **Location-Based Quests** — Discover sustainability challenges mapped to your neighborhood. Every location, every action matters.
+🗺️ **Location-Based Quests**: Discover sustainability challenges mapped to your neighborhood. Every location, every action matters.
 
-📸 **Proof Matters** — Post photos of your completed quests. See your impact. Inspire others.
+📸 **Proof Matters**: Post photos of your completed quests. See your impact. Inspire others.
 
-⭐ **Earn Points, Not Just Good Feelings** — Complete quests, rack up points, and actually *feel* your progress.
+⭐ **Earn Points, Not Just Good Feelings**: Complete quests, rack up points, and actually *feel* your progress.
 
-🏆 **Leaderboard Wars** — Compete with friends, classmates, and your community. Friendly competition drives real change.
+🏆 **Leaderboard Wars**: Compete with friends, classmates, and your community. Friendly competition drives real change.
 
-🎨 **Immersive Experience** — Beautiful, custom-designed avatars and an intuitive map interface make sustainability *feel* good.
+🎨 **Immersive Experience**: Beautiful, custom-designed avatars and an intuitive map interface make sustainability *feel* good.
 
-🌱 **Community-Powered** — Join thousands of people building a sustainable future. Together, we move faster.
+🌱 **Community-Powered**: Join thousands of people building a sustainable future. Together, we move faster.
 
 ---
 
