@@ -48,9 +48,59 @@ const PROOF_TYPES = ["photo", "checkbox", "note", "gps_or_checkbox", "gps_or_pho
 // Places (expand this list)
 const PLACES = [
   { placeId: "bakke", placeName: "Bakke Recreation & Wellbeing Center", lat: 43.0769, lng: -89.4092 },
-  // { placeId: "kronshage", placeName: "Kronshage Dorms", lat: 43.0798, lng: -89.4312 },
-  // { placeId: "memorial_union", placeName: "Memorial Union", lat: 43.0763, lng: -89.4008 },
-  // { placeId: "picnic_point", placeName: "Picnic Point", lat: 43.0916, lng: -89.4247 },
+  { placeId: "kronshage", placeName: "Kronshage Dorms", lat: 43.0798, lng: -89.4312 },
+  { placeId: "memorial_union", placeName: "Memorial Union", lat: 43.0763, lng: -89.4008 },
+  { placeId: "picnic_point", placeName: "Picnic Point", lat: 43.0916, lng: -89.4247 },
+
+  { placeId: "union_south", placeName: "Union South", lat: 43.0713, lng: -89.4085 },
+  { placeId: "grainger_library", placeName: "Wendt Commons (formerly Grainger Engineering Library)", lat: 43.0735, lng: -89.4073 },
+  { placeId: "college_library", placeName: "College Library", lat: 43.0756, lng: -89.3995 },
+  { placeId: "steenbock_library", placeName: "Steenbock Library", lat: 43.0754, lng: -89.4057 },
+  { placeId: "chazen_museum", placeName: "Chazen Museum of Art", lat: 43.0739, lng: -89.4012 },
+  { placeId: "bascom_hall", placeName: "Bascom Hall", lat: 43.0754, lng: -89.4041 },
+  { placeId: "van_vleck", placeName: "Van Vleck Hall", lat: 43.0742, lng: -89.4035 },
+  { placeId: "humanities", placeName: "Humanities Building", lat: 43.0759, lng: -89.4025 },
+  { placeId: "educational_sciences", placeName: "Educational Sciences Building", lat: 43.0748, lng: -89.4010 },
+  { placeId: "chemistry_building", placeName: "Chemistry Building", lat: 43.0745, lng: -89.4048 },
+  { placeId: "engineering_hall", placeName: "Engineering Hall", lat: 43.0725, lng: -89.4081 },
+  { placeId: "mech_eng", placeName: "Mechanical Engineering Building", lat: 43.0720, lng: -89.4072 },
+  { placeId: "computer_sciences", placeName: "Computer Sciences Building", lat: 43.0726, lng: -89.4069 },
+  { placeId: "discovery_building", placeName: "Wisconsin Institutes for Discovery", lat: 43.0718, lng: -89.4078 },
+  { placeId: "microbial_sciences", placeName: "Microbial Sciences Building", lat: 43.0730, lng: -89.4059 },
+  { placeId: "biotechnology_center", placeName: "Biotechnology Center", lat: 43.0727, lng: -89.4052 },
+  { placeId: "ag_hall", placeName: "Agricultural Hall", lat: 43.0757, lng: -89.4049 },
+  { placeId: "animal_sciences", placeName: "Animal Sciences Building", lat: 43.0759, lng: -89.4062 },
+  { placeId: "dejope", placeName: "Dejope Residence Hall", lat: 43.0770, lng: -89.4045 },
+  { placeId: "oglebay", placeName: "Ogg Residence Hall", lat: 43.0709, lng: -89.4097 },
+  { placeId: "smith_hall", placeName: "Smith Residence Hall", lat: 43.0704, lng: -89.4086 },
+  { placeId: "sellery", placeName: "Sellery Residence Hall", lat: 43.0714, lng: -89.4047 },
+  { placeId: "witte", placeName: "Witte Residence Hall", lat: 43.0717, lng: -89.4051 },
+  { placeId: "bradley", placeName: "Bradley Residence Hall", lat: 43.0779, lng: -89.4307 },
+  { placeId: "cole", placeName: "Cole Residence Hall", lat: 43.0782, lng: -89.4301 },
+  { placeId: "carson_gulley", placeName: "Carson Gulley Center", lat: 43.0774, lng: -89.4049 },
+  { placeId: "four_lakes_market", placeName: "Four Lakes Market", lat: 43.0770, lng: -89.4045 },
+  { placeId: "camp_randall", placeName: "Camp Randall Stadium", lat: 43.0699, lng: -89.4127 },
+  { placeId: "kohl_center", placeName: "Kohl Center", lat: 43.0698, lng: -89.3965 },
+  { placeId: "natatorium", placeName: "Natatorium", lat: 43.0758, lng: -89.4094 },
+  { placeId: "nicholas_rec", placeName: "Nicholas Recreation Center", lat: 43.0694, lng: -89.4114 },
+  { placeId: "lathrop_hall", placeName: "Lathrop Hall", lat: 43.0750, lng: -89.4019 },
+  { placeId: "music_hall", placeName: "Music Hall", lat: 43.0767, lng: -89.4010 },
+  { placeId: "law_school", placeName: "UW Law School", lat: 43.0747, lng: -89.4030 },
+  { placeId: "medical_sciences", placeName: "Medical Sciences Center", lat: 43.0778, lng: -89.4323 },
+  { placeId: "uw_hospital", placeName: "UW Hospital", lat: 43.0776, lng: -89.4319 },
+  { placeId: "arboretum", placeName: "UW Arboretum Visitor Center", lat: 43.0426, lng: -89.4297 },
+  { placeId: "eagle_heights", placeName: "Eagle Heights Community Gardens", lat: 43.0806, lng: -89.4180 },
+  { placeId: "allen_centennial", placeName: "Allen Centennial Garden", lat: 43.0748, lng: -89.4059 },
+  { placeId: "washington_ave", placeName: "East Campus Mall", lat: 43.0751, lng: -89.4003 },
+  { placeId: "state_street", placeName: "State Street (Campus End)", lat: 43.0756, lng: -89.3990 },
+  { placeId: "mifflin", placeName: "Mifflin Street Area", lat: 43.0738, lng: -89.4020 },
+  { placeId: "nancy_nicholas", placeName: "Nancy Nicholas Hall", lat: 43.0715, lng: -89.4101 },
+  { placeId: "science_hall", placeName: "Science Hall", lat: 43.0762, lng: -89.4040 },
+  { placeId: "social_sciences", placeName: "Social Sciences Building", lat: 43.0733, lng: -89.4015 },
+  { placeId: "institute_for_research", placeName: "Institute for Research on Poverty", lat: 43.0741, lng: -89.4028 },
+  { placeId: "fluno_center", placeName: "Fluno Center", lat: 43.0737, lng: -89.4009 },
+  { placeId: "red_gym", placeName: "Red Gym", lat: 43.0759, lng: -89.4015 },
+  { placeId: "memorial_library", placeName: "Memorial Library", lat: 43.0768, lng: -89.4012 }
 ];
 
 // Collection to write to
@@ -422,28 +472,36 @@ async function writeQuests(quests: any[]) {
   return { created, skipped, total: results.length };
 }
 
-// -------------------- Main --------------------
 async function main() {
   console.log(`Seeding ${PLACES.length} places × up to ${QUESTS_PER_PLACE} quests/place into "${QUESTS_COLLECTION}"...`);
+
   const limitPlaces = pLimit(MAX_CONCURRENCY_PLACES);
 
-  const tasks = PLACES.map((place) =>
-    limitPlaces(async () => {
-      console.log(`\n[1/2] Generating quests for: ${place.placeName}`);
-      const quests = await generateQuestsForPlace(place);
-      console.log(`[2/2] Writing ${quests} quests for: ${place.placeName}`);
-      console.log(quests)
-      await saveRawGeminiOutput(place, quests);
-      // const stats = await writeQuests(quests);
-      // console.log(`Done: ${place.placeName} | created=${stats.created} skipped(existing)=${stats.skipped} total=${stats.total}`);
-    })
-  );
+  for (let round = 1; round <= 5; round++) {
+    console.log(`\n============================`);
+    console.log(`🚀 ROUND ${round} STARTING`);
+    console.log(`============================`);
 
-  await Promise.all(tasks);
-  console.log("\n✅ All places seeded.");
+    const tasks = PLACES.map((place) =>
+      limitPlaces(async () => {
+        console.log(`\n[1/2] Generating quests for: ${place.placeName}`);
+        const quests = await generateQuestsForPlace(place);
+
+        console.log(`[2/2] Writing quests for: ${place.placeName}`);
+        console.log(quests);
+
+        await saveRawGeminiOutput(place, quests);
+      })
+    );
+
+    await Promise.all(tasks);
+
+    console.log(`\n✅ ROUND ${round} COMPLETE\n`);
+  }
 }
 
-main().catch((e) => {
-  console.error("\n❌ Seed failed:", e);
-  process.exit(1);
-});
+// ✅ THIS MUST BE OUTSIDE main()
+// main().catch((e) => {
+//   console.error("\n❌ Seed failed:", e);
+//   process.exit(1);
+// });
