@@ -40,7 +40,7 @@ No guilt. No greenwashing. Just real action, real progress, and real competition
 
 ```bash
 # Clone the repository
-git clone <your-repo-url>
+git clone https://github.com/Ashmit2520/ecoquest.git
 cd ecoquest
 
 # Install dependencies
