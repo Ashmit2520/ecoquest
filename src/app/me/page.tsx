@@ -1,11 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { badges, UserBadgeProgress, initialBadgeProgress, getBadgeById } from '../../data/badges';
-import { quests } from '../../data/quests';
-import { inventoryItems, InventoryItem, rarityColors, categoryLabels, getItemsByCategory, getItemsByRarity } from '../../data/inventory';
-import BadgeCard from '../../components/BadgeCard';
-import { useAuth } from '../../context/AuthContext';
+import Image from 'next/image';
+import { badges, UserBadgeProgress, initialBadgeProgress, getBadgeById } from '@/data/badges';
+import { quests } from '@/data/quests';
+import { inventoryItems, InventoryItem, rarityColors, categoryLabels, getItemsByCategory, getItemsByRarity } from '@/data/inventory';
+import BadgeCard from '@/components/BadgeCard';
+import { useAuth } from '@/context/AuthContext';
 
 type InventoryCategory = 'all' | 'skins' | 'badges' | 'boosters' | 'seasonal';
 
@@ -123,7 +124,7 @@ export default function ProfilePage() {
             </div>
             {/* Luma coins display */}
             <div className="absolute -top-2 -left-2 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-full px-2 py-1 flex items-center gap-1 shadow-lg animate-[coin-bounce_2s_ease-in-out_infinite]">
-              <span className="text-sm">🪙</span>
+              <Image src="/erasebg-transformed%20(2).png" alt="Luma" width={16} height={16} />
               <span className="text-xs font-bold text-yellow-900">{lumaCoins}</span>
             </div>
           </div>
@@ -268,7 +269,7 @@ export default function ProfilePage() {
           </h2>
           <div className="flex items-center gap-2 text-sm text-gray-500">
             <span className="flex items-center gap-1">
-              <span className="text-yellow-500">🪙</span>
+              <Image src="/erasebg-transformed%20(2).png" alt="Luma" width={20} height={20} />
               {lumaCoins} Luma
             </span>
           </div>
@@ -376,7 +377,7 @@ export default function ProfilePage() {
                                 : 'bg-gray-200 text-gray-400 cursor-not-allowed'
                             }`}
                           >
-                            <span>🪙</span>
+                            <Image src="/erasebg-transformed%20(2).png" alt="Luma" width={14} height={14} />
                             <span>{item.cost}</span>
                           </button>
                         )}
