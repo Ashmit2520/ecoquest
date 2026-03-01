@@ -10,7 +10,6 @@ export async function updateUserPoints(uid: string, points: number) {
 }
 
 
-
 export async function createUserIfNotExists(user: any) {
   const userRef = doc(db, "users", user.uid);
   const userSnap = await getDoc(userRef);

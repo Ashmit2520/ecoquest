@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Quest } from '../data/quests';
+import { Quest } from '@/data/quests';
 
 interface QuestCardProps {
   quest: Quest;

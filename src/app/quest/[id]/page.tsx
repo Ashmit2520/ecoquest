@@ -3,11 +3,11 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { getQuestById, Quest, BadgeCategory } from '../../../data/quests';
-import { getBadgeById, getCurrentLevel, UserBadgeProgress, initialBadgeProgress, Badge } from '../../../data/badges';
-import CompletionModal from '../../../components/CompletionModal';
-import SuccessModal from '../../../components/SuccessModal';
-import { useAuth } from '../../../context/AuthContext';
+import { getQuestById, Quest, BadgeCategory } from '@/data/quests';
+import { getBadgeById, getCurrentLevel, UserBadgeProgress, initialBadgeProgress, Badge } from '@/data/badges';
+import CompletionModal from '@/components/CompletionModal';
+import SuccessModal from '@/components/SuccessModal';
+import { useAuth } from '@/context/AuthContext';
 import confetti from 'canvas-confetti';
 
 const categoryLabels: Record<BadgeCategory, string> = {

@@ -1,6 +1,6 @@
 'use client';
 
-import { Badge, getCurrentLevel, getNextLevel, getProgressToNextLevel, UserBadgeProgress } from '../data/badges';
+import { Badge, getCurrentLevel, getNextLevel, getProgressToNextLevel, UserBadgeProgress } from '@/data/badges';
 
 interface BadgeCardProps {
   badge: Badge;

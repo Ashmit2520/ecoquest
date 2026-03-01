@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { Badge } from '../data/badges';
+import { Badge } from '@/data/badges';
 
 interface SuccessModalProps {
   isOpen: boolean;
